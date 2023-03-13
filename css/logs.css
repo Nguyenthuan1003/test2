@@ -1,0 +1,36 @@
+@media(max-width: 414px){
+    .action-logs {
+        justify-content: center;
+    }
+
+    .form-logs {
+        margin-bottom: 10px;
+    }
+
+    .logs-table_grid th {
+        font-size: 14px;
+    }
+
+    .logs-table_grid td {
+        font-size: 12px;
+    }
+
+    .form-logs {
+        display: grid;
+        /* justify-content: center; */
+        justify-items: center;
+        width: 90%;
+    }
+
+    .form-logs input {
+        padding: 10px;
+        font-size: 12px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .form-logs button {
+        margin: 10px 0;
+    }
+
+}
