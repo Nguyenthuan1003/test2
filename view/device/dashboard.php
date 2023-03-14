@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
     <title>Dashboard</title>
 </head>
 
@@ -21,13 +21,13 @@
             <nav>
                 <ul class="dashboard-menu">
                     <li class="dashboard-menu_item">
-                        <a href="./dashboard.html">
+                        <a href="../../thuannm_week2/index.php?url=dashboard">
                             <i class="fa-solid fa-house-laptop"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="dashboard-menu_item">
-                        <a href="./logs.html">
+                        <a href="../../index.php?url=logs">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             Logs
                         </a>
@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="dashboard-menu_item">
-                        <a href="./index.html">
+                        <a href="../../index.php?url=/">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             Logout
                         </a>
@@ -69,13 +69,13 @@
                         <nav>
                             <ul class="dashboard-menu">
                                 <li class="dashboard-menu_item">
-                                    <a href="./dashboard.html">
+                                    <a href="../../index.php?url=dashboard">
                                         <i class="fa-solid fa-house-laptop"></i>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="./logs.html">
+                                    <a href="../../index.php?url=logs">
                                         <i class="fa-solid fa-clock-rotate-left"></i>
                                         Logs
                                     </a>
@@ -87,7 +87,7 @@
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="./index.html">
+                                    <a href="../../index.php?url=/">
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         Logout
                                     </a>
@@ -110,7 +110,16 @@
                         </tr>
                     </thead>
                     <tbody id="dashboard-table">
+                    <?php
+                        if(!is_array($devices)){
 
+                        }
+                        if(is_array($devices)){
+                            foreach($devices as $device){
+
+                            }
+                        }
+                    ?>
                     </tbody>
                     <tfoot>
                         <tr class="tfoot">
@@ -123,31 +132,31 @@
                     <div class="dashboard-chart">
                         <canvas id="myChart" class="chart" style="max-width: 100%; height: 100%;"></canvas>
                     </div>
-                    <form action="" class="dashboard-form">
+                    <form action="../../thuannm_week2/index.php?url=add" class="dashboard-form" method="post" enctype="multipart/form-data">
                         <div class="dashboard-input">
-                            <input type="text" id="name" placeholder="Name">
+                            <input type="text" id="name" placeholder="Name" name="name">
                             <label for="" class="error" id="name-error"></label>
                         </div>
                         <div class="dashboard-input">
-                            <input type="text" id="mac" placeholder="Mac Address">
+                            <input type="text" id="mac" placeholder="Mac Address" name="mac">
                             <label for="" class="error" id="mac-error"></label>
                         </div>
                         <div class="dashboard-input">
-                            <input type="text" id="ip" placeholder="IP">
+                            <input type="text" id="ip" placeholder="IP" name="ip">
                             <label for="" class="example">Example IP: 192.168.0.1</label>
                             <label for="" class="error" id="ip-error"></label>
                         </div>
                         <div class="dashboard-input">
-                            <input type="date" id="date">
+                            <input type="date" id="date" name="date">
                             <label for="" class="error" id="date-error"></label>
                         </div>
                         <div class="dashboard-input">
-                            <input type="number" id="power" placeholder="power">
+                            <input type="number" id="power" placeholder="power" name="power">
                             <label for="" class="error" id="power-error"></label>
                         </div>
                         <div class="dashboard-btn">
-                            <button type="submit" id="save">Add device</button>
-                            <button type="submit" id="update">Update device</button>
+                            <input type="submit" name="submit" id="save" value="Add device">
+                            <!-- <button type="submit" id="update"><a href="./dashboard.php?url=update">Update device</a></button> -->
                         </div>
                     </form>
                 </div>

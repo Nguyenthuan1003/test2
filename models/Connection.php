@@ -10,8 +10,8 @@
 
         public function __construct(){
             $this->host = 'mysql:host=localhost;dbname=thuannm_week2';
-            $this->username = 'thuannm';
-            $this->password = '12345678';
+            $this->username = 'root';
+            $this->password = '';
         }
 
         public function connection(){
