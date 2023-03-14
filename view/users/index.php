@@ -27,11 +27,7 @@
             </div>
         </form>
     </div>
-    <!-- <div class="hide">
-        <div class="loading"></div>
-        <h3 class="loading-text">loading...</h3>
-    </div> -->
-    <script src="../js/index.js"></script>
+    <!-- <script src="../js/index.js"></script> -->
 </body>
 
 </html>

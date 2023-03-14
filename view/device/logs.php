@@ -21,13 +21,13 @@
             <nav>
                 <ul class="dashboard-menu">
                     <li class="dashboard-menu_item">
-                        <a href="./dashboard.html">
+                        <a href="../../index.php?url=dashboard">
                             <i class="fa-solid fa-house-laptop"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="dashboard-menu_item">
-                        <a href="./logs.html">
+                        <a href="../../index.php?url=logs&page=1">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             Logs
                         </a>
@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="dashboard-menu_item">
-                        <a href="./index.html">
+                        <a href="../../index.php?url=/">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             Logout
                         </a>
@@ -69,25 +69,25 @@
                         <nav>
                             <ul class="dashboard-menu">
                                 <li class="dashboard-menu_item">
-                                    <a href="./dashboard.html">
+                                    <a href="../../index.php?url=dashboard">
                                         <i class="fa-solid fa-house-laptop"></i>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="./logs.html">
+                                    <a href="../../index.php?url=logs&page=1">
                                         <i class="fa-solid fa-clock-rotate-left"></i>
                                         Logs
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="">
+                                    <a href="#">
                                         <i class="fa-solid fa-gear"></i>
                                         Settings
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="./index.html">
+                                    <a href="../../index.php?url=/">
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                         Logout
                                     </a>
@@ -115,7 +115,14 @@
                         </tr>
                     </thead>
                     <tbody id="table">
-
+                        <?php foreach($devices as $device) : ?>
+                            <tr class="logs-table_grid table-hover">
+                                <td class="text-start table-line-over"><?=$device['id']?></td>
+                                <td class="text-end table-line-over"><?=$device['name']?></td>
+                                <td class="text-end table-line-over"><?=$device['action']==0 ? 'turn off' : 'turn on'?></td>
+                                <td class="text-end table-line-over"><?=$device['create_at']?></td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                     <tfoot>
                         <tr class="tfoot">
@@ -125,11 +132,14 @@
                     </tfoot>
                 </table>
                 <div class="paginate" id="pages">
+                    <?php for($i = 0; $i < $number_page; $i++) :?>
+                        <a href="../../index.php?url=logs&page=<?=$i?>" class="paginate-item"><?=$i + 1?></a>
+                    <?php endfor ?>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../js/logs.js"></script>
+    <!-- <script src="../js/logs.js"></script> -->
 </body>
 
 </html>

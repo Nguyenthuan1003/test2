@@ -267,7 +267,11 @@ tfoot td{
     border-radius: 50%;
     border: none;
     outline: none;
-    opacity: 0.5;
+    opacity: 0.6;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 .example-ip{

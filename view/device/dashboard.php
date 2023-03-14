@@ -21,13 +21,13 @@
             <nav>
                 <ul class="dashboard-menu">
                     <li class="dashboard-menu_item">
-                        <a href="../../thuannm_week2/index.php?url=dashboard">
+                        <a href="../../index.php?url=dashboard">
                             <i class="fa-solid fa-house-laptop"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="dashboard-menu_item">
-                        <a href="../../index.php?url=logs">
+                        <a href="../../index.php?url=logs&page=1">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             Logs
                         </a>
@@ -75,7 +75,7 @@
                                     </a>
                                 </li>
                                 <li class="dashboard-menu_item">
-                                    <a href="../../index.php?url=logs">
+                                    <a href="../../index.php?url=logs&page=1">
                                         <i class="fa-solid fa-clock-rotate-left"></i>
                                         Logs
                                     </a>
@@ -110,16 +110,29 @@
                         </tr>
                     </thead>
                     <tbody id="dashboard-table">
-                    <?php
-                        if(!is_array($devices)){
-
-                        }
-                        if(is_array($devices)){
-                            foreach($devices as $device){
-
-                            }
-                        }
-                    ?>
+                    <?php if(!is_array($devices)) : ?>
+                        <tr class="dashboard-table_grid table-hover">
+                            <td class="text-start table-line-over chart-name"><?= $devices['name']?></td>
+                            <td class="text-end table-line-over"><?= $devices['mac_address']?></td>
+                            <td class="text-end table-line-over"><?= $devices['ip']?></td>
+                            <td class="text-end table-line-over"><?= $devices['create_at']?></td>
+                            <td class="text-end table-line-over chart-power"><?= $devices['power']?></td>
+                            <td class="text-center table-line-over"><button class="edit">Edit</button></td>
+                            <td class="text-center table-line-over"><button class="delete">Delete</button></td>
+                        </tr>
+                    <?php elseif(is_array($devices)) : ?>
+                        <?php foreach($devices as $device) : ?>
+                            <tr class="dashboard-table_grid table-hover">
+                                <td class="text-start table-line-over chart-name"><?= $device['name']?></td>
+                                <td class="text-end table-line-over"><?= $device['mac_address']?></td>
+                                <td class="text-end table-line-over"><?= $device['ip']?></td>
+                                <td class="text-end table-line-over"><?= $device['create_at']?></td>
+                                <td class="text-end table-line-over chart-power"><?= $device['power']?></td>
+                                <td class="text-center table-line-over"><a href="../../index.php?url=edit&id=<?=$device['id']?>"><button class="edit">Edit</button></a></td>
+                                <td class="text-center table-line-over"><a href="../../index.php?url=delete&id=<?=$device['id']?>"><button class="delete">Delete</button></a></td>
+                            </tr>
+                        <?php endforeach ?>
+                    <?php endif ?>
                     </tbody>
                     <tfoot>
                         <tr class="tfoot">
@@ -132,7 +145,7 @@
                     <div class="dashboard-chart">
                         <canvas id="myChart" class="chart" style="max-width: 100%; height: 100%;"></canvas>
                     </div>
-                    <form action="../../thuannm_week2/index.php?url=add" class="dashboard-form" method="post" enctype="multipart/form-data">
+                    <form action="../../index.php?url=add" class="dashboard-form" method="post" enctype="multipart/form-data" id="save">
                         <div class="dashboard-input">
                             <input type="text" id="name" placeholder="Name" name="name">
                             <label for="" class="error" id="name-error"></label>
@@ -155,15 +168,41 @@
                             <label for="" class="error" id="power-error"></label>
                         </div>
                         <div class="dashboard-btn">
-                            <input type="submit" name="submit" id="save" value="Add device">
-                            <!-- <button type="submit" id="update"><a href="./dashboard.php?url=update">Update device</a></button> -->
+                            <button type="submit" name="submit" value="save">Add device</button>
+                        </div>
+                    </form>
+                    <form action="../../index.php?url=update" class="dashboard-form" method="post" enctype="multipart/form-data" id="update">
+                        <input type="hidden" name="id" value="<?= isset($oneDevice['id']) ? $oneDevice['id'] : ''?>">
+                        <div class="dashboard-input">
+                            <input type="text" id="name" placeholder="Name" name="name" value="<?= isset($oneDevice['name']) ? $oneDevice['name'] : '' ?>">
+                            <label for="" class="error" id="name-error"></label>
+                        </div>
+                        <div class="dashboard-input">
+                            <input type="text" id="mac" placeholder="Mac Address" name="mac" value="<?= isset($oneDevice['mac_address']) ? $oneDevice['mac_address'] : '' ?>">
+                            <label for="" class="error" id="mac-error"></label>
+                        </div>
+                        <div class="dashboard-input">
+                            <input type="text" id="ip" placeholder="IP" name="ip" value="<?= isset($oneDevice['ip']) ? $oneDevice['ip'] : '' ?>">
+                            <label for="" class="example">Example IP: 192.168.0.1</label>
+                            <label for="" class="error" id="ip-error"></label>
+                        </div>
+                        <div class="dashboard-input">
+                            <input type="date" id="date" name="date" value="<?= isset($oneDevice['create_at']) ? $oneDevice['create_at'] : '' ?>">
+                            <label for="" class="error" id="date-error"></label>
+                        </div>
+                        <div class="dashboard-input">
+                            <input type="number" id="power" placeholder="power" name="power" value="<?= isset($oneDevice['power']) ? $oneDevice['power'] : '' ?>">
+                            <label for="" class="error" id="power-error"></label>
+                        </div>
+                        <div class="dashboard-btn">
+                            <button type="submit" name="update" id="update-btn" value="update">Update device</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../js/dashboard.js"></script>
+    <script src="./js/dashboard.js"></script>
 </body>
 
 </html>
